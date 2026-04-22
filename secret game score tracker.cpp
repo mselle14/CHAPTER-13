@@ -1,20 +1,69 @@
-// secret game score tracker.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+//Marshon Sellers
 #include <iostream>
+#include <string>
+using namespace std;
+
+class Game
+{
+private:
+    int game_score;
+
+public:
+    void setScore(int score_value)
+    {
+        game_score = score_value;
+    }
+
+    int getScore()
+    {
+        return game_score;
+    }
+};
+
+class Player : public Game
+{
+private:
+    string player_name;
+
+public:
+    void setPlayerName(string name_value)
+    {
+        player_name = name_value;
+    }
+
+    void displayResult()
+    {
+        cout << "----- Game Result -----" << endl;
+        cout << "Player: " << player_name << endl;
+        cout << "Score: " << getScore() << endl;
+
+        if (getScore() >= 80)
+        {
+            cout << "Level: Winner Zone" << endl;
+        }
+        else
+        {
+            cout << "Level: Keep Practicing" << endl;
+        }
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Player player_object;
+    string input_name;
+    int input_score;
+
+    cout << "Enter player name: ";
+    getline(cin, input_name);
+
+    cout << "Enter score: ";
+    cin >> input_score;
+
+    player_object.setPlayerName(input_name);
+    player_object.setScore(input_score);
+
+    player_object.displayResult();
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
